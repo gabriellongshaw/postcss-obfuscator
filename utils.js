@@ -162,6 +162,10 @@ function copyDirectory(source, destination, copyHiddenFiles = false) {
 }
 
 function getFileCount(directoryPath, extensions, excludePathsOrFiles = []) {
+  if (!fs.existsSync(directoryPath)) {
+    return 0;
+  }
+
   let count = 0;
   const files = fs.readdirSync(directoryPath);
   files.forEach((file) => {
